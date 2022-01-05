@@ -1,2 +1,2 @@
-# appscripts
+# Appscripts
 Client Onboarding AppScripts
