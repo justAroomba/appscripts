@@ -1,0 +1,427 @@
+function autoFillGoogleDocFromForm(e) {
+  
+  //**************************************************BEGIN VARIABLE DECLARATIONS**********************************************//
+  var timestamp = e.values[0];
+  var blank = e.values[1];
+  
+  //Retailer Info//
+  var DealerCode = e.values[2];
+  var RetailerName = e.values[3];
+  var RetailerCrossStreets = e.values[4];
+  var RetailerWebsiteURL = e.values[5];
+  var KeyContactName = e.values[6];
+  var KeyContactTitle  = e.values[7];
+  var KeyContactEmail  = e.values[8];
+  var KeyContactPhoneNumber   = e.values[9];
+  
+  //Service Hours//
+  var ServiceMondayHoursofOperation = e.values[10];
+  var ServiceTuesdayHoursofOperation = e.values[11];
+  var ServiceWednesdayHoursofOperation = e.values[12];
+  var ServiceThursdayHoursofOperation = e.values[13];
+  var ServiceFridayHoursofOperation = e.values[14];
+  var ServiceSaturdayHoursofOperation = e.values[15];
+  var ServiceSundayHoursofOperation = e.values[16];
+  
+  //Express//
+  var DoesExpressLanerequireanappointment = e.values[17];
+  var ExpressLaneMondayHoursofOperation  = e.values[18];
+  var ExpressLaneTuesdayHoursofOperation  = e.values[19];
+  var ExpressLaneWednesdayHoursofOperation = e.values[20];
+  var ExpressLaneThursdayHoursofOperation = e.values[21];
+  var ExpressLaneFridayHoursofOperation = e.values[22];
+  var ExpressLaneSaturdayHoursofOperation = e.values[23];
+  var ExpressLaneSundayHoursofOperation = e.values[24];
+  
+  //Transportation Options//
+  var DoyouofferLOANERvehicles = e.values[25];
+  var AreyourLOANERsfreeofchargeforthecustomer = e.values[26];
+  var PleasesummarizehowyouwouldlikeagentstoscheduleLOANERvehicles = e.values[27]; 
+  var DoyouofferSHUTTLEservice = e.values[28];
+  var WhatarethehoursofoperationforyourSHUTTLEService = e.values[29];
+  var WhatmileradiusisofferedforSHUTTLEService = e.values[30];
+  var DoesyourSHUTTLEservicepickupANDdropoff  = e.values[31];
+  var PleasesummarizehowyouwouldlikeagentstoscheduleSHUTTLErides = e.values[32];
+  var DoyouofferapickupandhomedeliveryserviceforcustomersVALET = e.values[33];
+  var WhatisthedistanceyoullgoforaVALETservice = e.values[34];
+  var PleasesummarizehowifyouwouldlikeagentstoscheduleVALETservices = e.values[35]; 
+  
+  //Drop Box//
+  var Doyouhaveanafterhoursdropbox = e.values[36];
+  var Provideinstructionsforwhereyourafterhoursdropboxislocated = e.values[37];
+  
+  //Emergency Towing//
+  var Providephonenumberforemergencytowin = e.values[38];
+  
+  //Body Shop//
+  var Whichbodyshopdoyourecommend = e.values[39];
+  var Whatisthecontactinformationtoreachtherecommendedbodyshop = e.values[40];
+  
+  //Windshield//
+  var HowshouldtheagentshandleWindshieldinquiries  = e.values[41];
+  
+  //Detailing//
+  var Doyouofferdetailingservices = e.values[42];
+  var Ifyouofferdetailingserviceswouldyoulikeourteamtoschedulethis = e.values[43];
+  var priceanddurationofyourdetailingservices = e.values[44];
+  
+  //Emergency Situation//
+  var emergencysituation = e.values[45];
+  
+  //Parts//
+  var Partsprocess = e.values[46];
+  
+  //Saturdays & Same day//
+  var Saturdayappointments = e.values[47];
+  var samedayappointments  = e.values[48];
+  
+  
+  //***RECALL INFO***//
+  
+  var Pleasesummarizehowyouwouldlikeagentstohandlerecallappointments = e.values[49];
+  var Isyourshoploadingsetuptoaccuratelydisplayrecallappointmentavailability = e.values[50];
+  var Areanyrecallsallowedaswalkins = e.values[51];
+  
+  //Recalls listed in alphabetical order//
+  var TakataAirbagInflatorRecall = e.values[52];
+  var TKA20orTKB20orTKC20TakataAirbagInflatorExpansionRecall = e.values[53];
+  var WQK47BrakePipeCorrosionRecall = e.values[54];
+  var WRB21ForesterACCondenserRecall = e.values[55];
+  var WRC20RearSeatbeltWebbingLockingRecall = e.values[56];
+  var WRD21RearStabilizerBracketRecall = e.values[57];
+  var WRE21IgnitioncoilRecall = e.values[58];
+  var WRG20ContinentalTireSafetyRecall = e.values[59];
+  var WRG21FuelPumpImpellerReplacementRecall = e.values[60];
+  var WRH20RearVisibilityNonComplianceRecall = e.values[61];
+  var WRH21ECMReprogrammingforDTCRecall = e.values[62];
+  var WRI20CockpitControlModuleRecall = e.values[63];
+  var WRI21FrontLowerControlArmImproperWeldRecall = e.values[64];
+  var WRJ20PowerRearGateRecall = e.values[65];
+  var WRK20orWRF20AirConditioningPipeRecall = e.values[66];
+  var WRK21CVTChainGuideBreakageRecall = e.values[67];
+  var WRL21FrontAxleHousingRecall = e.values[68];
+  var WTK71WindshieldWiperMotorReplacementRecall = e.values[69];
+  var WTW82CombinationMeterReprogrammingRecall = e.values[70];
+  var WTY84ValveSpringFracturingRecall = e.values[71];
+  var WTZ81EPBActuatorAssemblyRecall = e.values[72];
+  var WTZ85orWUA86HKReprogramRecall = e.values[73];
+  var WUE90BrakeLampSwitchReplacementRecall = e.values[74];
+  var WUJ95ExhaustPipeFrontBellowsCrackingRecall = e.values[75];
+  var WUK96InsufficientTighteningTorqueofEPFNutsRecall = e.values[76];
+  var WUM98FrontPassengersideODSRecall = e.values[77];
+  var WUR03BrakeHoseSwellingRecall = e.values[78];
+  var WUT05RearCoilSpringsRecall = e.values[79];
+  var WUU06ECUReprogrammingRecall = e.values[80];
+  var WUV07CVTChainSlipRecall = e.values[81];
+  var WUW08PCVValveFracturingRecall = e.values[82];
+  
+  //ROUTINE SERVICES & PRICING//
+  
+  //6k//
+  var Price6k = e.values[83];
+  var Duration6k = e.values[84];
+  
+  //12k//
+  var Price12k = e.values[85];
+  var Duration12k = e.values[86];
+  
+  //18k//
+  var Price18k = e.values[87];
+  var Duration18k = e.values[88];
+  
+  //24k//
+  var Price24k = e.values[89];
+  var Duration24k = e.values[90];
+  
+  //30k//
+  var Price30k = e.values[91];
+  var Duration30k = e.values[92];
+  
+  //60k//
+  var Price60k = e.values[93];
+  var Duration60k = e.values[94];
+  
+  //90k//
+  var Price90k = e.values[95];
+  var Duration90k = e.values[96];
+  
+  //120k//
+  var Price120k = e.values[97];
+  var Duration120k = e.values[98];
+  
+  //alignment//
+  var PriceAlign = e.values[99];
+  var DurationAlign = e.values[100];
+  
+  //Battery Replacement//
+  var PriceBatt = e.values[101];
+  var DurationBatt = e.values[102];
+  
+  //Tire Rotation//
+  var PriceRotate = e.values[103];
+  var DurationRotate = e.values[104];
+  
+  //Oil Changes//
+  var PriceConOil = e.values[105];
+  var DurationConOil = e.values[106];
+  var PriceSynOil = e.values[107];
+  var DurationSynOil = e.values[108];
+  
+  //Headlight Bulb replacement//
+  var PriceBulb = e.values[109];
+  var DurationBulb = e.values[110];
+  
+  //Brakes//
+  var PriceBrakeInspect = e.values[111];
+  var DurationBrakeInspect = e.values[112];
+  var PriceBrakeReplace = e.values[113];
+  var DurationBrakeReplace = e.values[114];
+  
+  //Buyer's Inspection//
+  var PriceBuyInspect = e.values[115];
+  var DurationBuyInspect = e.values[116];
+  
+  //Diagnosis//
+  var PriceDiag = e.values[117];
+  var DurationDiag = e.values[118];
+  
+  //State Inspections//
+  var PriceState = e.values[119];
+  var DurationState = e.values[120];
+  
+  //Starlink//
+  var Starlink = e.values[121];
+  
+  //Trailer Hitch//
+  var PriceHitch = e.values[122];
+  var DurationHitch = e.values[123];
+  
+  //Tires//
+  var PriceTires = e.values[124];
+  
+  //**************************************************END VARIABLE DECLARATIONS************************************************//
+ 
+  
+   //file is the template file, and you get it by ID
+  var file = DriveApp.getFileById('1eBmUsVRWBj5f4ULQBcApBrsUOYlpOZ9KRKcFGhIWePo'); 
+  
+  //We can make a copy of the template, name it, and optionally tell it what folder to live in
+  var folder = DriveApp.getFolderById('1OVqrgdZsqeM3xRlGkyprBWeqjmISch10')
+  
+  //file.makeCopy will return a Google Drive file object
+  var copy = file.makeCopy(DealerCode + ',' + RetailerName, folder); 
+  
+  //Once we've got the new file created, we need to open it as a document by using its ID
+  var doc = DocumentApp.openById(copy.getId()); 
+  
+  //Since everything we need to change is in the body, we need to get that
+  var body = doc.getBody(); 
+  
+  //***********************************************BEGIN REPLACE TEMPLATE TEXT*************************************************//
+
+  body.replaceText('{{TIMESTAMP}}', timestamp);
+  body.replaceText('{{BLANK}}', blank);
+  
+  //RETAILER INFO// 
+  
+  body.replaceText('{{Dealer Code}}', DealerCode);
+  body.replaceText('{{Retailer Name}}', RetailerName);
+  body.replaceText('{{Retailer Cross Streets}}', RetailerCrossStreets);
+  body.replaceText('{{Retailer Website URL}}', RetailerWebsiteURL);
+  body.replaceText('{{Key Contact Name}}', KeyContactName);
+  body.replaceText('{{Key Contact Title}}', KeyContactTitle);
+  body.replaceText('{{Key Contact Email}}', KeyContactEmail);
+  body.replaceText('{{Key Contact Phone #}}', KeyContactPhoneNumber);
+  
+   //Service Hours//
+  body.replaceText('{{Service Monday Hours of Operation}}', ServiceMondayHoursofOperation);
+  body.replaceText('{{Service Tuesday Hours of Operation}}', ServiceTuesdayHoursofOperation);
+  body.replaceText('{{Service Wednesday Hours of Operation}}', ServiceWednesdayHoursofOperation);
+  body.replaceText('{{Service Thursday Hours of Operation}}', ServiceThursdayHoursofOperation);
+  body.replaceText('{{Service Friday Hours of Operation}}', ServiceFridayHoursofOperation);
+  body.replaceText('{{Service Saturday Hours of Operation}}', ServiceSaturdayHoursofOperation);
+  body.replaceText('{{Service Sunday Hours of Operation}}', ServiceSundayHoursofOperation);
+  
+   //Express//
+  body.replaceText('{{Does Express Lane require an appointment}}', DoesExpressLanerequireanappointment);
+  body.replaceText('{{Express Lane Monday Hours of Operation if different than normal hours}}', ExpressLaneMondayHoursofOperation);
+  body.replaceText('{{Express Lane Tuesday Hours of Operation if different than normal hours}}', ExpressLaneTuesdayHoursofOperation);
+  body.replaceText('{{Express Lane Wednesday Hours of Operation if different than normal hours}}', ExpressLaneWednesdayHoursofOperation);
+  body.replaceText('{{Express Lane Thursday Hours of Operation if different than normal hours}}', ExpressLaneThursdayHoursofOperation);
+  body.replaceText('{{Express Lane Friday Hours of Operation if different than normal hours}}', ExpressLaneFridayHoursofOperation);
+  body.replaceText('{{Express Lane Saturday Hours of Operation if different than normal hours}}', ExpressLaneSaturdayHoursofOperation);
+  body.replaceText('{{Express Lane Sunday Hours of Operation if different than normal hours}}', ExpressLaneSundayHoursofOperation);
+  
+  //Transportation Options//
+  body.replaceText('{{Do you offer LOANER vehicles}}', DoyouofferLOANERvehicles);
+  body.replaceText('{{Are your LOANERs free of charge for the customer}}', AreyourLOANERsfreeofchargeforthecustomer);
+  body.replaceText('{{Please summarize how if you would like agents to schedule LOANER vehicles}}', PleasesummarizehowyouwouldlikeagentstoscheduleLOANERvehicles);
+  body.replaceText('{{Do you offer SHUTTLE service}}', DoyouofferSHUTTLEservice);
+  body.replaceText('{{What are the hours of operation for your SHUTTLE Service}}', WhatarethehoursofoperationforyourSHUTTLEService);
+  body.replaceText('{{What mile radius is offered for SHUTTLE Service}}', WhatmileradiusisofferedforSHUTTLEService);
+  body.replaceText('{{Does your SHUTTLE service pick up AND drop off}}', DoesyourSHUTTLEservicepickupANDdropoff);
+  body.replaceText('{{Please summarize how if you would like agents to schedule SHUTTLE rides}}', PleasesummarizehowyouwouldlikeagentstoscheduleSHUTTLErides);
+  body.replaceText('{{Do you offer a pick-up and home delivery service for customers VALET}}', DoyouofferapickupandhomedeliveryserviceforcustomersVALET);
+  body.replaceText('{{What is the distance youll go for a VALET service}}', WhatisthedistanceyoullgoforaVALETservice);
+  body.replaceText('{{Please summarize how if you would like agents to schedule VALET services}}', PleasesummarizehowifyouwouldlikeagentstoscheduleVALETservices);
+  
+  
+  //Drop Box//
+  body.replaceText('{{Do you have an afterhours drop box}}', Doyouhaveanafterhoursdropbox);
+  body.replaceText('{{Provide instructions for where your afterhours drop box is located}}', Provideinstructionsforwhereyourafterhoursdropboxislocated);
+  
+  //Emergency Towing//
+  body.replaceText('{{Provide phone number for emergency tow-in}}', Providephonenumberforemergencytowin);
+  
+  //Body Shop//
+  body.replaceText('{{Which body shop do you recommend}}', Whichbodyshopdoyourecommend);
+  body.replaceText('{{What is the contact information to reach the recommended body shop}}', Whatisthecontactinformationtoreachtherecommendedbodyshop);
+  
+  //Windshield//
+  body.replaceText('{{How should the agents handle Windshield inquiries}}', HowshouldtheagentshandleWindshieldinquiries);
+  
+  //Detailing//
+  body.replaceText('{{Do you offer detailing services}}', Doyouofferdetailingservices);
+  body.replaceText('{{If you offer detailing services would you like our team to schedule this}}', Ifyouofferdetailingserviceswouldyoulikeourteamtoschedulethis);
+  body.replaceText('{{What is the price and duration of your detailing services}}', priceanddurationofyourdetailingservices);
+  
+  //Emergency Situation//
+  body.replaceText('{{In the event a customer reaches our team with an emergency how do you prefer our team handles them transfer refer to Subaru Roadside Assistance etc}}', emergencysituation);
+  
+  //Parts//
+  body.replaceText('{{What is your Parts process for customers  Can items be set aside Does the customer prepay for parts that are getting ordered}}', Partsprocess);
+  
+  //Saturdays & Same day//
+  body.replaceText('{{What restrictions do you have in place for Saturday appointments}}', Saturdayappointments);
+  body.replaceText('{{What restrictions do you have in place when scheduling same day appointments}}', samedayappointments);
+  
+  
+  //***RECALL INFO***//
+  
+  body.replaceText('{{Please summarize how you would like agents to handle recall appointments}}', Pleasesummarizehowyouwouldlikeagentstohandlerecallappointments);
+  body.replaceText('{{Is your shop loading set up to accurately display recall appointment availability}}', Isyourshoploadingsetuptoaccuratelydisplayrecallappointmentavailability);
+  body.replaceText('{{Are any recalls allowed as walk-ins}}', Areanyrecallsallowedaswalkins);
+  
+  //Recalls listed in alphabetical order//
+  body.replaceText('{{What is the time duration for the Takata Airbag Inflator Recall}}', TakataAirbagInflatorRecall);
+  body.replaceText('{{What is the time duration for the TKA-20 or TKB-20 or TKC-20 Takata Airbag Inflator Expansion Recall}}', TKA20orTKB20orTKC20TakataAirbagInflatorExpansionRecall);
+  body.replaceText('{{What is the time duration for the WQK-47 Brake Pipe Corrosion Recall}}', WQK47BrakePipeCorrosionRecall);
+  body.replaceText('{{What is the time duration for the WRB-21 Forester A/C Condenser Recall}}', WRB21ForesterACCondenserRecall);
+  body.replaceText('{{What is the time duration for the WRC-20 Rear Seatbelt Webbing Locking Recall}}', WRC20RearSeatbeltWebbingLockingRecall);
+  body.replaceText('{{What is the time duration for the WRD-21 Rear Stabilizer Bracket Recall}}', WRD21RearStabilizerBracketRecall);
+  body.replaceText('{{What is the time duration for the WRE-21 Ignition coil Recall}}', WRE21IgnitioncoilRecall);
+  body.replaceText('{{What is the time duration for the WRG-20 Continental Tire Safety Recall}}', WRG20ContinentalTireSafetyRecall);
+  body.replaceText('{{What is the time duration for the WRG-21 Fuel Pump Impeller Replacement Recall}}', WRG21FuelPumpImpellerReplacementRecall);
+  body.replaceText('{{What is the time duration for the WRH-20 Rear Visibility Non-Compliance Recall}}', WRH20RearVisibilityNonComplianceRecall);
+  body.replaceText('{{What is the time duration for the WRH-21 ECM Reprogramming for DTC Recall}}', WRH21ECMReprogrammingforDTCRecall);
+  body.replaceText('{{What is the time duration for the WRI-20 Cockpit Control Module Recall}}', WRI20CockpitControlModuleRecall);
+  body.replaceText('{{What is the time duration for the WRI-21 Front Lower Control Arm Improper Weld Recall}}', WRI21FrontLowerControlArmImproperWeldRecall);
+  body.replaceText('{{What is the time duration for the WRJ-20 Power Rear Gate PRG Recall}}', WRJ20PowerRearGateRecall);
+  body.replaceText('{{What is the time duration for the WRK-20 or WRF-20 Air Conditioning Pipe Recall}}', WRK20orWRF20AirConditioningPipeRecall);
+  body.replaceText('{{What is the time duration for the WRK-21 CVT Chain Guide Breakage Recall}}', WRK21CVTChainGuideBreakageRecall);
+  body.replaceText('{{What is the time duration for the WRL-21 Front Axle Housing Recall}}', WRL21FrontAxleHousingRecall);
+  body.replaceText('{{What is the time duration for the WTK-71 Windshield Wiper Motor Replacement Recall}}', WTK71WindshieldWiperMotorReplacementRecall);
+  body.replaceText('{{What is the time duration for the WTW-82 Combination Meter Reprogramming Recall}}', WTW82CombinationMeterReprogrammingRecall);
+  body.replaceText('{{What is the time duration for the WTY-84 Valve Spring Fracturing Recall}}', WTY84ValveSpringFracturingRecall);
+  body.replaceText('{{What is the time duration for the WTZ-81 EPB Actuator Assembly Recall}}', WTZ81EPBActuatorAssemblyRecall);
+  body.replaceText('{{What is the time duration for the WTZ-85 or WUA-86 HK Reprogram Recall}}', WTZ85orWUA86HKReprogramRecall);
+  body.replaceText('{{What is the time duration for the WUE-90 Brake Lamp Switch Replacement Recall}}', WUE90BrakeLampSwitchReplacementRecall);
+  body.replaceText('{{What is the time duration for the WUJ-95 Exhaust Pipe Front Bellows Cracking Recall}}', WUJ95ExhaustPipeFrontBellowsCrackingRecall);
+  body.replaceText('{{What is the time duration for the WUK-96 Insufficient Tightening Torque of EPF Nuts Recall}}', WUK96InsufficientTighteningTorqueofEPFNutsRecall);
+  body.replaceText('{{What is the time duration for the WUM-98 Front Passenger side ODS Recall}}', WUM98FrontPassengersideODSRecall);
+  body.replaceText('{{What is the time duration for the WUR-03 Brake Hose Swelling Recall}}', WUR03BrakeHoseSwellingRecall);
+  body.replaceText('{{What is the time duration for the WUT-05 Rear Coil Springs Recall}}', WUT05RearCoilSpringsRecall);
+  body.replaceText('{{What is the time duration for the WUU-06 ECU Reprogramming Recall}}', WUU06ECUReprogrammingRecall);
+  body.replaceText('{{What is the time duration for the WUV-07 CVT Chain Slip Recall}}', WUV07CVTChainSlipRecall);
+  body.replaceText('{{What is the time duration for the WUW-08 PCV Valve Fracturing Recall}}', WUW08PCVValveFracturingRecall);
+  
+  
+  //ROUTINE SERVICES & PRICING//
+  
+  //6k//
+  body.replaceText('{{Service 6000 Miles Price}}', Price6k); 
+  body.replaceText('{{Service 6000 Miles Length of Time it takes to Complete Service in minutes}}', Duration6k);
+  
+  //12k//
+  body.replaceText('{{Service 12000 Miles Price}}', Price12k);
+  body.replaceText('{{Service 12000 Miles Length of Time it takes to Complete Service in minutes}}', Duration12k);
+  
+  //18k//
+  body.replaceText('{{Service 18000 Miles Price}}', Price18k);
+  body.replaceText('{{Service 18000 Miles Length of Time it takes to Complete Service in minutes}}', Duration18k);
+  
+  //24k//
+  body.replaceText('{{Service 24000 Miles Price}}', Price24k);
+  body.replaceText('{{Service 24000 Miles Length of Time it takes to Complete Service in minutes}}', Duration24k);
+  
+  //30k//
+  body.replaceText('{{Service 30000 Miles Price}}', Price30k);
+  body.replaceText('{{Service 30000 Miles Length of Time it takes to Complete Service in minutes}}', Duration30k);
+  
+  //60k//
+  body.replaceText('{{Service 60000 Miles Price}}', Price60k);
+  body.replaceText('{{Service 60000 Miles Length of Time it takes to Complete Service in minutes}}', Duration60k);
+  
+  //90k//
+  body.replaceText('{{Service 90000 Miles Price}}', Price90k);
+  body.replaceText('{{Service 90000 Miles Length of Time it takes to Complete Service in minutes}}', Duration90k);
+  
+  //120k//
+  body.replaceText('{{Service 120000 Miles Price}}', Price120k);
+  body.replaceText('{{Service 120000 Miles Length of Time it takes to Complete Service in minutes}}', Duration120k);
+  
+  //alignment//
+  body.replaceText('{{Alignment Price}}', PriceAlign);
+  body.replaceText('{{Alignment Duration}}', DurationAlign);
+  
+  //Battery Replacement//
+  body.replaceText('{{Service Battery Replacement Price}}', PriceBatt);
+  body.replaceText('{{Service Battery Replacement Duration}}', DurationBatt);
+  
+  //Tire Rotation//
+  body.replaceText('{{Service Tire Rotation Price}}', PriceRotate);
+  body.replaceText('{{Service Tire Rotation Duration}}', DurationRotate);
+  
+  //Oil Changes//
+  body.replaceText('{{Conventional Oil Change Price}}', PriceConOil);
+  body.replaceText('{{Conventional Oil Change Duration}}', DurationConOil);
+  body.replaceText('{{Synthetic Oil Change Price}}', PriceSynOil);
+  body.replaceText('{{Synthetic Oil Change Duration}}', DurationSynOil);
+  
+  //Headlight Bulb replacement//
+  body.replaceText('{{Service Headlight Bulb Replacement Price}}', PriceBulb);
+  body.replaceText('{{Service Headlight Bulb Replacement Duration}}', DurationBulb);
+  
+  //Brakes//
+  body.replaceText('{{Service Brake Inspection Price}}', PriceBrakeInspect);
+  body.replaceText('{{Service Brake Inspection Duration}}', DurationBrakeInspect);
+  body.replaceText('{{Service Brake replacement both axles Price}}', PriceBrakeReplace);
+  body.replaceText('{{Service Brake replacement both axles Duration}}', DurationBrakeReplace);
+  
+  //Buyer's Inspection//
+  body.replaceText('{{Service Buyers Inspection Price}}', PriceBuyInspect);
+  body.replaceText('{{Service Buyers Inspection Duration}}', DurationBuyInspect);
+  
+  //Diagnosis//
+  body.replaceText('{{Service Diagnosis Price}}', PriceDiag);
+  body.replaceText('{{Service Diagnosis Duration}}', DurationDiag);
+  
+  //State Inspections//
+  body.replaceText('{{Service State Inspection Price}}', PriceState);
+  body.replaceText('{{Service State Inspection Duration}}', DurationState);
+  
+  //Starlink//
+  body.replaceText('{{Would you like our team to schedule for the 3G Starlink updates If yes how long does it take}}', Starlink);
+  
+  //Trailer Hitch//
+  body.replaceText('{{What is the price labor to purchase and install a trailer hitch}}', PriceHitch);
+  body.replaceText('{{What is the time duration of installing a trailer hitch}}', DurationHitch);
+  
+  //Tires//
+  body.replaceText('{{What is the labor cost for replacing a set of tires}}', PriceTires);
+
+  //***********************************************END REPLACE TEMPLATE TEXT*************************************************//
+  
+  doc.saveAndClose();
+}
+
